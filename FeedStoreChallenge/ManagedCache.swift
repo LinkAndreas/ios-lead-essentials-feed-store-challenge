@@ -14,4 +14,9 @@ import CoreData
 internal class ManagedCache: NSManagedObject {
 	@NSManaged internal var timestamp: Date
 	@NSManaged internal var feed: NSOrderedSet
+
+	static func fetch(in context: NSManagedObjectContext) throws -> ManagedCache? {
+		let request = NSFetchRequest<ManagedCache>(entityName: String(describing: ManagedCache.self))
+		return try context.fetch(request).first
+	}
 }
