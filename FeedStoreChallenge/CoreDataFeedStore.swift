@@ -53,6 +53,7 @@ public final class CoreDataFeedStore: FeedStore {
 				let newCache = ManagedCache(context: context)
 				newCache.timestamp = timestamp
 				newCache.feed = feed.toManaged(context: context)
+
 				try context.save()
 				completion(nil)
 			} catch {
@@ -68,6 +69,7 @@ public final class CoreDataFeedStore: FeedStore {
 			do {
 				let existingCache = try ManagedCache.fetch(in: context)
 				existingCache.map(context.delete)
+
 				try context.save()
 				completion(nil)
 			} catch {
